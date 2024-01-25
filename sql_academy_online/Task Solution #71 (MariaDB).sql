@@ -11,11 +11,10 @@ WITH Once_Count AS (
 		FROM Users
 			INNER JOIN Rooms ON Users.id = Rooms.owner_id
 			INNER JOIN Reservations ON Rooms.id = Reservations.room_id
-	) AS A
+	) AS Active_Users
 )
 
-SELECT
-ROUND((
+SELECT ROUND((
     SELECT *
 	FROM Once_Count
 ) / COUNT(*) * 100, 2) as percent
