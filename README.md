@@ -16,6 +16,4 @@
 
 ![Screenshot_01](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/some_screenshots/Screenshot_01.png)
 
-<br>
-
 ![Screenshot_02](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/some_screenshots/Screenshot_02.png)
