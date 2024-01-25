@@ -1,0 +1,49 @@
+> Задание 55: Удалить компании, совершившие наименьшее количество рейсов (повышенной сложности).
+
+Алгоритм решения (на русском):
+
+1. Сначала надо выяснить сколько в принципе рейсов сделала каждая компания. Для этого можно соединять таблицы, можно и не соединять. В таком случае группировка произойдёт не по названиям компаний, а по их id-шникам, для наших целей нам это вполне подходит.
+
+SELECT
+   COUNT(Trip.id) AS trip_count
+FROM Trip
+GROUP BY company;
+
+2. Теперь нам нужно выбрать из получившегося множества минимальное значение. В принципе, это не так уж и сложно.
+
+SELECT
+   MIN(trip_count)
+FROM (
+   SELECT COUNT(Trip.id) AS trip_count
+   FROM Trip
+   GROUP BY company
+) AS Min_Count;
+
+3. После этого надо выбрать id тех компаний, у которых количество полётов равно полученному минимальному значению.
+
+SELECT company
+FROM trip
+GROUP BY company
+HAVING COUNT(Trip.id) = (
+   SELECT MIN(trip_count)
+   FROM (
+      SELECT COUNT(Trip.id) AS trip_count
+      FROM Trip
+      GROUP BY company
+   ) AS Min_Count
+);
+
+4. Осталось только удалить компании по полученным в пункте 3 id-шникам.
+
+DELETE FROM Company
+WHERE Company.id IN (... запрос из пункта 3...);
+
+В итоге будут удалены 3 компании, у которых одинаково минимальное количество поездок = 2. Проверить это можно, модифицировав пункт 1.
+
+SELECT
+   Company.name,
+   COUNT(Trip.id) AS trip_count
+FROM Trip
+INNER JOIN Company ON Trip.company = Company.id
+GROUP BY Company.name
+ORDER BY trip_count, Company.name;
