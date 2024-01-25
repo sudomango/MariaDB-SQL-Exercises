@@ -1,0 +1,1 @@
+# MariaDB-SQL-Exercises
