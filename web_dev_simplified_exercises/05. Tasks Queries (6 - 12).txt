@@ -1,0 +1,116 @@
+03. Продолжаем SQL-упражнения по Web Dev Simplified (на этот раз с 6 по 12).
+
+Напомню, что сами задачи и примеры решений можно посмотреть на GitHub автора: https://github.com/WebDevSimplified/Learn-SQL.
+
+* * * * *
+
+> Get the longest album. Return the album name as "Name", the album release year as "Release Year", and the album length as "Duration".
+
+Основная особенность заключается в том, что длины альбома у нас как таковой нет - есть только длина отдельных песен.
+
+Сначала решим задачу "в лоб", через один сплошной запрос, а потом попробуем создать View (название_альбома, длина_альбома).
+
+SELECT
+   albums.name AS "Name",
+   albums.release_year AS "Release Year",
+   SUM(songs.length) AS "Duration"
+FROM songs
+INNER JOIN albums ON songs.album_id = albums.id
+GROUP BY albums.name
+ORDER BY Duration DESC
+LIMIT 1;
+
+Второй вариант решения, через представления:
+
+CREATE VIEW Album_Duration AS
+
+SELECT
+   albums.name AS "Name",
+   albums.release_year AS "Release Year",
+   SUM(songs.length) AS "Duration"
+FROM songs
+INNER JOIN albums ON songs.album_id = albums.id
+GROUP BY albums.name
+ORDER BY Duration ASC;
+
+/* Представление успешно создано, теперь можем с ним работать, как с виртуальной таблицей */
+
+SELECT * FROM Album_Duration
+ORDER BY Duration DESC
+LIMIT 1;
+
+* * * * *
+
+> Update the release year of the album with no release year. Set the release year to 1986.
+
+UPDATE albums
+SET release_year = 1986
+WHERE release_year IS NULL;
+
+Решение, предлагаемое Web Dev Simplified (в связи с какими-то ограничениями MySQL Workbench):
+
+Получаем id-шник интересующего нас альбома: SELECT * FROM albums where release_year IS NULL;
+
+После чего изменяем информацию о дате релиза уже через id-шник:
+
+UPDATE albums
+SET release_year = 1986
+WHERE id = 4;
+
+* * * * *
+
+> Insert a record for your favorite band and one of their albums.
+
+INSERT INTO bands (id, name) VALUES (0, "Marilyn Manson");
+INSERT INTO albums (id, name, release_year, band_id) VALUES (0, "Eat Me, Drink Me", 2007, 8);
+
+* * * * *
+
+> Delete the band and album you added in the task #8.
+
+DELETE FROM albums WHERE albums.name = "Eat Me, Drink Me";
+DELETE FROM bands WHERE bands.name = "Marilyn Manson";
+
+* * * * *
+
+> Get the average length of all songs. Return the average length as "Average Song Duration".
+
+SELECT
+   AVG(songs.length) AS "Average Song Duration"
+FROM songs;
+
+> Do the same for each band in the list.
+
+SELECT
+   bands.name AS "Band Name",
+   AVG(songs.length) AS "Average Song Duration"
+FROM songs
+INNER JOIN albums ON songs.album_id = albums.id
+INNER JOIN bands ON albums.band_id = bands.id
+GROUP BY `Band Name`
+ORDER BY `Average Song Duration`;
+
+* * * * *
+
+> Select the longest song off each album. Return the album name as "Album", the album release year as "Release Year", and the longest song length as "Duration".
+
+SELECT
+   albums.name AS "Album",
+   albums.release_year AS "Release Year",
+   MAX(songs.`length`) AS "Longest Song"
+FROM songs
+INNER JOIN albums ON songs.album_id = albums.id
+GROUP BY Album
+ORDER BY Album;
+
+* * * * *
+
+> Get the number of songs for each band. Return the band name as "Band", the number of songs as "Number of Songs".
+
+SELECT
+   bands.name AS "Band",
+   COUNT(songs.name) AS "Number of Songs"
+FROM songs
+INNER JOIN albums ON songs.album_id = albums.id
+INNER JOIN bands ON albums.band_id = bands.id
+GROUP BY Band;

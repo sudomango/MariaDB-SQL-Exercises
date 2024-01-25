@@ -1,0 +1,23 @@
+01. Создание таблицы Songs и наполнение базы данных информацией (из файла Data.sql).
+
+Подробное задание см. здесь: https://github.com/WebDevSimplified/Learn-SQL.
+
+В начале надо вставить схему базы данных из файла Schema.sql, потом уже применять наработки из этого файла.
+
+* * * * *
+
+USE record_company;
+
+CREATE TABLE IF NOT EXISTS songs (
+   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   name VARCHAR(200) NOT NULL,
+   length FLOAT NOT NULL,
+   album_id INT NOT NULL,
+   FOREIGN KEY (album_id) REFERENCES albums(id)
+);
+
+DESCRIBE songs;
+
+* * * * *
+
+После этого можем спокойно вставлять код запроса из файла Data.sql для наполнение базы данных информацией.
