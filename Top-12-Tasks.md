@@ -8,7 +8,7 @@
 
 **Примечание:** Несмотря на кажущуюся простоту, это одно из самых комплексных заданий тренажёра.
 
-[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2355%20(MariaDB).sql)
+[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2355%20(MySQL).sql)
 
 ------------------------------------------------------------
 
@@ -16,7 +16,7 @@
 
 **Задание:** Добавить отзыв с рейтингом 5 на жильё, находящиеся по адресу "11218, Friel Place, New York", от имени "George Clooney".
 
-[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2358%20(MariaDB).sql)
+[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2358%20(MySQL).sql)
 
 ------------------------------------------------------------
 
@@ -24,7 +24,7 @@
 
 **Задание:** Вывести список комнат со всеми удобствами (наличие ТВ, интернета, кухни и кондиционера), а также общее количество дней и сумму за все дни аренды каждой из таких комнат.
 
-[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2366%20(MariaDB).sql)
+[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2366%20(MySQL).sql)
 
 ------------------------------------------------------------
 
@@ -32,7 +32,7 @@
 
 **Задание:** Найдите какой процент пользователей, зарегистрированных на сервисе бронирования, хоть раз арендовали или сдавали в аренду жильё. Результат округлите до сотых.
 
-[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2371%20(MariaDB).sql)
+[Ссылка на файл с решением](https://github.com/sudomango/MariaDB-SQL-Exercises/blob/main/sql_academy_online/Task%20Solution%20%2371%20(MySQL).sql)
 
 ------------------------------------------------------------
 
@@ -46,7 +46,7 @@
 
 1\. Код равен номеру модели плюс максимальный код, который был до вставки.
 
-2\. Скорость, объем памяти и диска, а также скорость CD должны иметь максимальные характеристики среди всех имеющихся в таблице PC.
+2\. Скорость, объём памяти и диска, а также скорость CD должны иметь максимальные характеристики среди всех имеющихся в таблице PC.
 
 3\. Цена должна быть средней среди всех ПК, имевшихся в таблице PC до вставки.
 
